@@ -26,6 +26,10 @@ const UserSchema = mongoose.Schema({
     address: {
         type: String,
         default: ""
+    },
+    cart: {
+        type: Array,
+        default: []
     }
 })
 
