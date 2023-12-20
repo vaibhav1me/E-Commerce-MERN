@@ -24,4 +24,44 @@ const addToCart = async (req, res) => {
     }
 }
 
-module.exports = {addToCart}
+const removeItem = async (req, res) => {
+    try {
+      const { userId, productId, removeAll} = req.body; // frontend will send an object with userId and productId
+      const user = await User.findOne({ _id: userId });
+      const cart = user.cart;
+      const updatedCart = cart.map((cartItem) => {
+        if (removeAll == true && cartItem.productId == productId) {
+          return {};
+        }
+        else if (cartItem.productId == productId && cartItem.quantity == 1) {
+          return {};
+        }
+        else if(cartItem.productId == productId){
+          return {...cartItem, quantity: cartItem.quantity - 1}
+        }
+        else {
+          return {...cartItem}
+        }
+      })
+      const finalCart = updatedCart.filter((cartItem) => {
+        return Object.keys(cartItem).length != 0
+      })
+      const updatedUser = await User.findOneAndUpdate({_id: userId}, {cart: finalCart}, {new: true})
+      res.json(updatedUser)
+    } catch (error) {
+      res.json(error);
+    }
+}
+
+const fetchCart = async (req, res) => {
+  try {
+    const {userId} = req.body;
+    const user = await User.findOne({_id: userId})
+    const cart = user.cart
+    res.json(cart)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+module.exports = {addToCart, removeItem, fetchCart}

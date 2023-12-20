@@ -2,7 +2,12 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
 const createUser = async (req, res) => {
+  const user = req.body
   try {
+    if (!(user.email && user.name && user.password && user.mobile && user.role)) {
+      res.json({message: "Fill all the fields"})
+    }
+    else {
     const existingUser = await User.findOne({ email: req.body.email });
     if (existingUser) {
       res.json({ message: "User already exists" });
@@ -10,8 +15,9 @@ const createUser = async (req, res) => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
       const user = await User.create({ ...req.body, password: hashedPassword });
-      res.json(user);
+      res.json({message: "User created successfully", user});
     }
+  }
   } catch (error) {
     res.json(error);
   }
@@ -19,17 +25,17 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const existingUser = await User.findOne({ email: req.body.email });
-    if (!existingUser) {
-        res.json({message: 'This account does not exist.'})
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+        res.json({message: 'This email does not exist in our database.'})
     }
     else{
-        const correctPassword = await bcrypt.compare(req.body.password, existingUser.password)
+        const correctPassword = await bcrypt.compare(req.body.password, user.password)
         if(!correctPassword){
             res.json({message: "Incorrect login credentials"})
         }
         else{
-            res.json({message: "Login successful"})
+            res.json({message: "Login Successful", user})
         }
     }
   } catch (error) {
