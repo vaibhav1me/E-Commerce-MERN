@@ -18,9 +18,9 @@ const Header = () => {
         </div>
         <div id="nav-right" className="flex items-center">
             {
-              user ? <div ><li id="header-profile" className="text-[1.2rem] mr-[2rem] px-[.2rem] cursor-pointer">
+              user ? <div className="flex flex-col justify-center items-center mx-1"><div id="header-profile" className="text-[1rem]  px-[.2rem] cursor-pointer">
               Hi! {user.name}
-              </li> 
+              </div> 
               <div id="logout" className="display-none" onClick={() => {setAccount('')}}>
                 Logout
               </div></div>
@@ -29,8 +29,7 @@ const Header = () => {
                 <Link to='/login'>Login</Link>
             </div>
             }
-
-          
+        
           <input
             type="text"
             placeholder="Search an Item"

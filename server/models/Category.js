@@ -8,7 +8,8 @@ const CategorySchema = mongoose.Schema({
     brands: {
         type: Array,
         default: ""
-    }
+    },
+    imageUrl: String
 })
 
 module.exports = mongoose.model('Category', CategorySchema)

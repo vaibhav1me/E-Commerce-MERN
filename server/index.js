@@ -7,6 +7,7 @@ const userRoutes = require('./routes/Users')
 const productRoutes = require('./routes/Products')
 const cartRoutes = require('./routes/Carts')
 const orderRoutes = require('./routes/Orders')
+const categoryRoutes = require('./routes/Category')
 
 app.use(cors())
 app.use(express.json())
@@ -14,6 +15,7 @@ app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/carts', cartRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/category', categoryRoutes)
 
 const startApp = async () => {
     try {

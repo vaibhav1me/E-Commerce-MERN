@@ -18,3 +18,27 @@ export const authenticateLogin = async (user) => {
         console.log('Error while calling login API: ', error);
     }
 }
+
+export const fetchAllCategories = async () => {
+    try {
+        return await axios.get(`${URL}/category/fetchAll`)
+    } catch (error) {   
+        console.log('Error', error)
+    }
+}
+
+export const fetchCategory = async (categoryName) => {
+    try {
+        return await axios.get(`${URL}/category/${categoryName}`)
+    } catch (error) {
+        console.log('Error', error)
+    }
+}
+
+export const fetchProduct = async (productId) => {
+    try {
+        return await axios.get(`${URL}/products/${productId}`)
+    } catch (error) {
+        console.log(error)
+    }
+}
