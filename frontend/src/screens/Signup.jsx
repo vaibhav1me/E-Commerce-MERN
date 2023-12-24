@@ -1,19 +1,27 @@
 import React, { useState, useContext, useEffect} from 'react'
-import { registerUser } from '../apis/api'
+import { registerUser, checkCurrentUser, fetchUser } from '../apis/api'
 import { Link, useNavigate } from 'react-router-dom'
 import { LoginContext } from '../context/DataProvider'
+
 
 const Signup = () => {
     const navigate = useNavigate()
     const { user, setUser } = useContext(LoginContext);
 
-    /* ------Work on this---------- */
-    // useEffect(() => {
-    //     if (user) {
-    //         navigate('/')
-    //     }
-    // },[])
-
+    useEffect(() => {
+      const checkUserStatus = async () => {
+        var response = await checkCurrentUser();
+        if (!response.data.message) {
+          var response2 = await fetchUser(response.data.id);
+        //   console.log(response);
+        //   console.log(response2.data.user);
+          setUser(response2.data.user);
+          navigate('/')
+        }
+      };
+      checkUserStatus();
+    }, []);
+    
     const [signup, setSignup] = useState({name: '', email: '', password: '', mobile: '', role: ''})
     const [message, setMessage] = useState('')
 
@@ -33,6 +41,7 @@ const Signup = () => {
             setMessage(data.message)
         }
         else {
+            localStorage.setItem("jwt", data.token);
             setUser(data.user)
             navigate('/')
         }

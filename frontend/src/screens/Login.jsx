@@ -1,18 +1,25 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate} from "react-router-dom"
-import { authenticateLogin } from '../apis/api';
+import { authenticateLogin, checkCurrentUser, fetchUser } from '../apis/api';
 import { LoginContext } from '../context/DataProvider'
 
 const Login = () => {
     const navigate = useNavigate()
     const { user, setUser } = useContext(LoginContext)
 
-    /*----Work on this------ */
-    // useEffect(() => {
-    //   if (user) {
-    //     navigate("/");
-    //   }
-    // }, []);
+    useEffect(() => {
+      const checkUserStatus = async () => {
+        var response = await checkCurrentUser();
+        if (!response.data.message) {
+          var response2 = await fetchUser(response.data.id);
+          //   console.log(response);
+          //   console.log(response2.data.user);
+          setUser(response2.data.user);
+          navigate("/");
+        }
+      };
+      checkUserStatus();
+    }, []);
 
     const [ message, setMessage] = useState();
     const [ login, setLogin ] = useState({});

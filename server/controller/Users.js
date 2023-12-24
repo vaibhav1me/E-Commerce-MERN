@@ -24,9 +24,9 @@ const createUser = async (req, res) => {
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
       const user = await User.create({ ...req.body, password: hashedPassword });
       const token = createToken(user._id)
-      res.setHeader("Access-Control-Allow-Credentials", "true");
-      res.cookie('jwt', token, { maxAge: maxAge * 1000})
-      res.json({message: "User created successfully", user});
+      // res.setHeader("Access-Control-Allow-Credentials", "true");
+      // res.cookie('jwt', token, { maxAge: maxAge * 1000})
+      res.json({message: "User created successfully", user, token});
     }
   }
   } catch (error) {

@@ -12,10 +12,12 @@ const Home = () => {
   useEffect(() => {
     const checkUserStatus = async () => {
       var response = await checkCurrentUser()
-      var response2 = await fetchUser(response.data.id)
-      console.log(response)
-      console.log(response2.data.user)
-      setUser(response2.data.user)
+      if (!response.data.message) {
+        var response2 = await fetchUser(response.data.id)
+        console.log(response)
+        console.log(response2.data.user)
+        setUser(response2.data.user)
+      }
     }
     checkUserStatus()
   },[])

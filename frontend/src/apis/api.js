@@ -43,9 +43,9 @@ export const fetchProduct = async (productId) => {
     }
 }
 
-export const addToCart = async (productId) => {
+export const addToCart = async (productId, token, userId) => {
     try {
-        return await axios.patch(`${URL}/carts/addToCart`, productId)
+        return await axios.patch(`${URL}/carts/addToCart`, {productId, userId, token})
     } catch (error) {
         console.log(error)
     }

@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import CategoryPage from "./screens/CategoryPage";
 import Home from "./screens/Home";
 import ProductPage from "./screens/ProductPage";
+import Account from "./screens/Account";
+import Cart from "./screens/Cart";
 
 
 const App = () => {
@@ -20,6 +22,8 @@ const App = () => {
           <Route path="/signup" element={<div className="bg-[#a2b8cd] h-[100vh] min-h-[640px] flex items-center justify-center"><Signup/></div>}/>
           <Route path="/category/:categoryName" element={<CategoryPage/>}/>
           <Route path="/product/:productId" element={<ProductPage/>}/>
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/account" element={<Account/>}/>
         </Routes>
     </BrowserRouter>
         </ContextProvider>

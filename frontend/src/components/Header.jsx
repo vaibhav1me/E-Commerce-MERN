@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import searchIcon from "../assets/Header/search.svg";
 import cart from "../assets/Header/cart.svg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {LoginContext} from "../context/DataProvider";
 
 
@@ -9,6 +9,13 @@ import {LoginContext} from "../context/DataProvider";
 const Header = () => {
 
   const { user , setUser} = useContext(LoginContext)
+  const navigate = useNavigate()
+
+  const logoutUser = () => {
+    localStorage.clear()
+    setUser('')
+    navigate('/')
+  }
 
   return (
     <nav className="bg-[#162e44] px-[2rem] py-[.8rem]">
@@ -21,9 +28,12 @@ const Header = () => {
               user ? <div className="flex flex-col justify-center items-center mx-1"><div id="header-profile" className="text-[1rem]  px-[.2rem] cursor-pointer">
               Hi! {user.name}
               </div> 
-              <div id="logout" className="display-none" onClick={() => {setAccount('')}}>
+              <button id="logout"  onClick={logoutUser}>
                 Logout
-              </div></div>
+              </button>
+              <Link  to="/account">
+                My Account
+              </Link></div>
             : 
             <div className="text-[1.2rem] mr-[2rem] px-[.2rem] cursor-pointer">
                 <Link to='/login'>Login</Link>
@@ -48,10 +58,10 @@ const Header = () => {
         <div className="user-profile">
 
         </div>
-        <div id="cart-orders" className="cursor-pointer">
-            <span>{user.cart.length}</span>
+        <Link to='/cart' id="cart" className="cursor-pointer text-center">
+            <span className="text-red-600 font-bold bg-white rounded-full w-[1.5rem] inline-block">{user.cart.length}</span>
             <img src={cart} alt="" className="h-6 w-6"/>
-        </div>
+        </Link>
         <div>
           My Orders
         </div>

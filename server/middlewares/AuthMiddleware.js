@@ -2,27 +2,27 @@ const jwt = require('jsonwebtoken')
 
 // Todo
 const authenticateUser = (req, res, next) => {
-    const token = req.cookies.jwt
+    const {token} = req.body
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
             if (err) {
                 console.log(err)
-                res.json({message: "User not logged in"})
+                res.json({message: "Error with token"})
             } 
             else {
-                console.log(decodedToken)
+                // console.log(decodedToken)
                 next()
             }
         })
     }
     else {
-        res.redirect('/login')
+        res.json({message: "User not logged in"})
     }
 }
 
 const checkCurrentUser = (req, res) => {
     const {token} = req.body
-    console.log(token)
+    // console.log(token)
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
             if (err) {
@@ -30,14 +30,14 @@ const checkCurrentUser = (req, res) => {
                 res.json({message: "Token expired"})
             }
             else {
-                console.log(decodedToken)
+                // console.log(decodedToken)
                 res.json(decodedToken)
             }
         })
     }
     else {
         // console.log(req.cookies)
-        console.log(req.body)
+        // console.log(req.body)
         res.json({message: "User not logged in"})
     }
 }

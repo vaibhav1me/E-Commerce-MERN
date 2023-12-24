@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
-import { fetchCategory } from "../apis/api";
+import { checkCurrentUser, fetchCategory, fetchUser } from "../apis/api";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
+import { LoginContext } from "../context/DataProvider";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
@@ -10,6 +11,21 @@ const CategoryPage = () => {
   const [brands, setBrands] = useState([])
   const [filteredBrands, setFilteredBrands] = useState([])
   const [filteredProducts, setFilteredProducts] = useState(products)
+
+  const { user, setUser } = useContext(LoginContext);
+
+  useEffect(() => {
+    const checkUserStatus = async () => {
+      var response = await checkCurrentUser();
+      if (!response.data.message) {
+        var response2 = await fetchUser(response.data.id);
+        // console.log(response);
+        // console.log(response2.data.user);
+        setUser(response2.data.user);
+      }
+    };
+    checkUserStatus();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +38,7 @@ const CategoryPage = () => {
   }, []);
 
   // useEffect(() => {
-  //   // console.log(filteredBrands)
+  //    console.log(filteredBrands)
   //   let filteredProducts = [];
   //   filteredBrands.forEach((brand) => {
   //     filteredProducts = [
@@ -32,7 +48,7 @@ const CategoryPage = () => {
   //     console.log(filteredProducts);
   //   });
   //   setProducts(filteredProducts)
-  //   // console.log(filteredProducts);
+  //   console.log(filteredProducts);
   //   return;
   // }, [filteredBrands]);
 

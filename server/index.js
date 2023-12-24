@@ -24,7 +24,6 @@ app.use('/api/orders', authenticateUser, orderRoutes)
 // app.use('/api/orders', orderRoutes)
 app.use('/api/category', categoryRoutes)
 app.post('/api', checkCurrentUser)
-app.get('/', (req, res) => {res.json({message: "server working"})})
 
 const startApp = async () => {
     try {
