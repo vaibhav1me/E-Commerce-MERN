@@ -42,3 +42,29 @@ export const fetchProduct = async (productId) => {
         console.log(error)
     }
 }
+
+export const addToCart = async (productId) => {
+    try {
+        return await axios.patch(`${URL}/carts/addToCart`, productId)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const checkCurrentUser = async () => {
+    try {
+        const token = localStorage.getItem("jwt");
+        // console.log(token)
+        return await axios.post(`${URL}`, {token})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const fetchUser = async (userId) => {
+    try {
+        return await axios.get(`${URL}/users/${userId}`)
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -1,5 +1,13 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const maxAge = 3*24*60*60
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: maxAge,
+  });
+};
 
 const createUser = async (req, res) => {
   const user = req.body
@@ -15,6 +23,9 @@ const createUser = async (req, res) => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
       const user = await User.create({ ...req.body, password: hashedPassword });
+      const token = createToken(user._id)
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.cookie('jwt', token, { maxAge: maxAge * 1000})
       res.json({message: "User created successfully", user});
     }
   }
@@ -27,15 +38,18 @@ const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-        res.json({message: 'This email does not exist in our database.'})
+        res.json({message: 'This email is not registered.'})
     }
     else{
         const correctPassword = await bcrypt.compare(req.body.password, user.password)
         if(!correctPassword){
-            res.json({message: "Incorrect login credentials"})
+            res.json({message: "Incorrect Password"})
         }
         else{
-            res.json({message: "Login Successful", user})
+            const token = createToken(user._id);
+            // res.setHeader('Access-Control-Allow-Credentials', 'true')
+            // res.cookie("jwt", token, {maxAge: maxAge * 1000 });
+            res.json({message: "Login Successful", user, token})
         }
     }
   } catch (error) {

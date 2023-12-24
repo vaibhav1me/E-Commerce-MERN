@@ -31,6 +31,7 @@ const Login = () => {
             setMessage(data.message)
         }
         else {
+            localStorage.setItem('jwt',data.token)
             setUser(data.user)
             navigate('/')
         }
