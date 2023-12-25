@@ -11,6 +11,7 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
+    // console.log(req.headers.cookie)
     const allProducts = await Product.find({});
     res.json(allProducts)
   } catch (error) {
@@ -23,6 +24,7 @@ const getProduct = async (req, res) => {
     const { productId } = req.params;
     const product = await Product.findOne({ _id: productId });
     if (product) {
+      console.log(req.headers.cookie)
         res.json(product);
     }
     else {

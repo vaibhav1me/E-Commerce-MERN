@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 // Todo
 const authenticateUser = (req, res, next) => {
-    const {token} = req.body
+    const { token } = req.body
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
             if (err) {
@@ -16,7 +16,7 @@ const authenticateUser = (req, res, next) => {
         })
     }
     else {
-        res.json({message: "User not logged in"})
+        res.json({message: "Token does not exist. Hence user not logged in"})
     }
 }
 

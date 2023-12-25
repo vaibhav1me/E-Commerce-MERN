@@ -14,8 +14,8 @@ const Home = () => {
       var response = await checkCurrentUser()
       if (!response.data.message) {
         var response2 = await fetchUser(response.data.id)
-        console.log(response)
-        console.log(response2.data.user)
+        // console.log(response)
+        // console.log(response2.data.user)
         setUser(response2.data.user)
       }
     }

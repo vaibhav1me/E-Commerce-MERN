@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
-import searchIcon from "../assets/Header/search.svg";
-import cart from "../assets/Header/cart.svg"
+import searchIcon from "../assets/search.svg";
+import cart from "../assets/cart.svg"
 import { Link, useNavigate } from "react-router-dom";
 import {LoginContext} from "../context/DataProvider";
-
-
 
 const Header = () => {
 
@@ -13,6 +11,7 @@ const Header = () => {
 
   const logoutUser = () => {
     localStorage.clear()
+    // Cookies.remove('jwt')
     setUser('')
     navigate('/')
   }

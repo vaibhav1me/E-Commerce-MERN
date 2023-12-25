@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect} from 'react'
 import { registerUser, checkCurrentUser, fetchUser } from '../apis/api'
 import { Link, useNavigate } from 'react-router-dom'
 import { LoginContext } from '../context/DataProvider'
+import Cookies from 'js-cookie'
 
 
 const Signup = () => {
@@ -42,6 +43,7 @@ const Signup = () => {
         }
         else {
             localStorage.setItem("jwt", data.token);
+            // Cookies.set("jwt", data.token, {path: '/'})
             setUser(data.user)
             navigate('/')
         }
