@@ -71,6 +71,7 @@ const fetchProduct = async (cartItem) => {
     quantity: cartItem.quantity,
     productImg: product.images[0],
     name: product.title,
+    seller: product.seller,
     price: cartItem.quantity * product.price,
   };
 };
