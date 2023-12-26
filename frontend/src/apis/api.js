@@ -97,3 +97,11 @@ export const createOrder = async (userId, token, orderItems) => {
     console.log(error)
   }
 }
+
+export const emptyCart = async (userId, token) => {
+  try {
+    return await axios.patch(`${URL}/carts/emptyCart`, {userId, token})
+  } catch (error) {
+    console.log(error)
+  }
+} 

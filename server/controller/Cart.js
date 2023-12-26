@@ -106,4 +106,14 @@ res.json({sentCart, cartValue})
   }
 }
 
-module.exports = {addToCart, removeItem, fetchCart}
+const emptyCart = async (req, res) => {
+  try {
+    const {userId} = req.body
+    const user = await User.findOneAndUpdate({_id: userId}, {cart: []}, {new: true})
+    res.json(user)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+module.exports = {addToCart, removeItem, fetchCart, emptyCart}

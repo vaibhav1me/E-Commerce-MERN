@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../context/DataProvider';
 import { useNavigate } from 'react-router';
-import { addToCart, checkCurrentUser, createOrder, fetchCart, fetchProduct, fetchUser, removeFromCart } from '../apis/api';
+import { addToCart, checkCurrentUser, createOrder, emptyCart, fetchCart, fetchProduct, fetchUser, removeFromCart } from '../apis/api';
 import Header from '../components/Header';
 import plus from '../assets/plus.svg'
 import minus from '../assets/minus.png'
@@ -71,6 +71,9 @@ const Cart = () => {
     const placeOrder = async (userId, token, orderItems) => {
       let response = await createOrder(userId, token, orderItems);
       console.log(response)
+      let deletedCart = await emptyCart(userId, token);
+      console.log(deletedCart)
+      setCart([])
     }
 
 
