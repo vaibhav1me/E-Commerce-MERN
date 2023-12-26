@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../context/DataProvider';
 import { useNavigate } from 'react-router';
-import { addToCart, checkCurrentUser, fetchCart, fetchProduct, fetchUser, removeFromCart } from '../apis/api';
+import { addToCart, checkCurrentUser, createOrder, fetchCart, fetchProduct, fetchUser, removeFromCart } from '../apis/api';
 import Header from '../components/Header';
 import plus from '../assets/plus.svg'
 import minus from '../assets/minus.png'
@@ -50,7 +50,7 @@ const Cart = () => {
       // console.log(response.data)
       let responseCart = await fetchCart(user._id, localStorage.getItem("jwt"));
       setCart(responseCart.data.sentCart);
-        setCartValue(responseCart.data.cartValue);
+      setCartValue(responseCart.data.cartValue);
     }
   }
 
@@ -68,8 +68,9 @@ const Cart = () => {
     }
     }
 
-    const placeOrder = async () => {
-      
+    const placeOrder = async (userId, token, orderItems) => {
+      let response = await createOrder(userId, token, orderItems);
+      console.log(response)
     }
 
 
@@ -126,7 +127,7 @@ const Cart = () => {
         </div>
         <div className="bg-green-500">
         <div>TotalcartValue: {cartValue}</div>
-        <button onClick={placeOrder}>Place Order</button>
+        <button onClick={() => placeOrder(user._id, localStorage.getItem('jwt'), cart)}>Place Order</button>
         </div>
       </section>
     </div>

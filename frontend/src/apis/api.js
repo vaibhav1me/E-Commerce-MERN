@@ -89,3 +89,11 @@ export const fetchCart = async (userId, token) => {
         console.log(error)
     }
 }
+
+export const createOrder = async (userId, token, orderItems) => {
+  try {
+    return await axios.post(`${URL}/orders`, {userId, token, orderItems})
+  } catch (error) {
+    console.log(error)
+  }
+}
