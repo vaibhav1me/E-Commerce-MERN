@@ -11,6 +11,14 @@ export const registerUser = async (data) => {
   }
 };
 
+export const updateUser = async (userId, values) => {
+  try {
+    return await axios.patch(`${URL}/users/${userId}`, values)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const authenticateLogin = async (user) => {
   try {
     return await axios.post(`${URL}/users/loginUser`, user);
