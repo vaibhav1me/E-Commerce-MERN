@@ -9,6 +9,12 @@ import Home from "./screens/Home";
 import ProductPage from "./screens/ProductPage";
 import Account from "./screens/Account";
 import Cart from "./screens/Cart";
+import Banner from "./components/Banner";
+import CategorySection from "./components/CategorySection";
+import Profile from "./components/Profile";
+import OrderHistory from "./components/OrderHistory";
+import Orders from "./components/Orders";
+import Products from "./components/Products";
 
 
 const App = () => {
@@ -17,13 +23,20 @@ const App = () => {
         <ContextProvider>
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home/>}>
+            <Route index element={<><Banner/><CategorySection/></>}/>
+            <Route path="category/:categoryName" element={<CategoryPage/>}/>
+            <Route path="product/:productId" element={<ProductPage/>}/>
+            <Route path="cart" element={<Cart/>}/>
+            <Route path="account" element={<Account/>}>
+              <Route index element={<Profile/>}/>
+              <Route path="orderHistory" element={<OrderHistory/>} />
+              <Route path="orders" element={<Orders/>} />
+              <Route path="products" element={<Products/>} />
+            </Route>
+          </Route>
           <Route path="/login" element={<div className="bg-[#a2b8cd] h-[100vh] min-h-[450px] flex items-center justify-center"><Login/></div>}/>
           <Route path="/signup" element={<div className="bg-[#a2b8cd] h-[100vh] min-h-[640px] flex items-center justify-center"><Signup/></div>}/>
-          <Route path="/category/:categoryName" element={<CategoryPage/>}/>
-          <Route path="/product/:productId" element={<ProductPage/>}/>
-          <Route path="/cart" element={<Cart/>}/>
-          <Route path="/account" element={<Account/>}/>
         </Routes>
     </BrowserRouter>
         </ContextProvider>

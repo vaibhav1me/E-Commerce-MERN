@@ -47,32 +47,58 @@ const Login = () => {
     }
 
   return (
-    <div className='bg-[#000000] w-[40%] py-[2rem] px-[1rem] rounded-[1.5rem]'>
-    <h1 className='text-[2rem] text-center underline'>
-        ShopAseZ.com
-    </h1>
-    <div className='border-[2px] px-[1.5rem] py-[1rem] w-[90%] m-auto mt-[1rem]'>
-        <h1 className='text-[1.5rem] text-center'>Welcome Buddy!</h1>
-        <div className='mt-[1rem]'>
-            <h2 className=''>Email</h2>
-            <input type="email" placeholder='Enter a valid email' onChange={(e)=>{updateLogin(e)}} name='email' className='px-[.5rem] py-[.2rem] w-[100%] text-[#162e44]'/>
+    <div className="bg-[#000000] w-[40%] py-[2rem] px-[1rem] rounded-[1.5rem]">
+      <h1 className="text-[2rem] text-center underline">ShopAseZ.com</h1>
+      <div className="border-[2px] px-[1.5rem] py-[1rem] w-[90%] m-auto mt-[1rem]">
+        <h1 className="text-[1.5rem] text-center">Welcome Buddy!</h1>
+        <div className="mt-[1rem]">
+          <h2 className="">Email</h2>
+          <input
+            type="email"
+            placeholder="Enter a valid email"
+            onChange={(e) => {
+              updateLogin(e);
+            }}
+            name="email"
+            className="px-[.5rem] py-[.2rem] w-[100%] text-[#162e44]"
+          />
         </div>
-        <div className='mt-[1rem]'>
-            <h2 className='' >Password</h2>
-            <input type="password" name='password' onChange={(e)=>{updateLogin(e)}} className='px-[.5rem] py-[.2rem] w-[100%] text-[#162e44]'/>
+        <div className="mt-[1rem]">
+          <h2 className="">Password</h2>
+          <input
+            type="password"
+            name="password"
+            onChange={(e) => {
+              updateLogin(e);
+            }}
+            className="px-[.5rem] py-[.2rem] w-[100%] text-[#162e44]"
+          />
         </div>
-        <div className='mt-[1rem]'>
-            <div className='text-center'>
-                <button className='bg-white text-[#162e44] px-[.5rem] py-[.2rem]' onClick={() => loginUser()}>Continue</button>
-                {message && <div className='text-[#FF0000] mt-[1rem]'>{message}</div>}
-            </div>
+        <div className="mt-[1rem]">
+          <div className="text-center">
+            <button
+              className="bg-white text-[#162e44] px-[.5rem] py-[.2rem]"
+              onClick={() => loginUser()}
+            >
+              Continue
+            </button>
+            {message && (
+              <div className="text-[#FF0000] mt-[1rem]">{message}</div>
+            )}
+          </div>
         </div>
-        <p className='text-center mt-[1rem]'>
-            Don't have an account? <Link to="/signup" className='text-[#70ace3]'>Create Account</Link>
+        <p className="text-center mt-[1rem]">
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-[#70ace3]">
+            Create Account
+          </Link>
         </p>
+        <button>
+          <Link to="/">Back To Home</Link>
+        </button>
+      </div>
     </div>
-</div>
-  )
+  );
 }
 
 export default Login

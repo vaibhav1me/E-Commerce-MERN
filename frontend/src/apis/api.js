@@ -105,3 +105,19 @@ export const emptyCart = async (userId, token) => {
     console.log(error)
   }
 } 
+
+export const fetchOrders = async (userId, token) => {
+  try {
+    return await axios.post(`${URL}/orders/${userId}`, {token})
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const fetchOrdersBySeller = async (sellerName, token) => {
+  try {
+    return await axios.post(`${URL}/orders/seller`, {sellerName, token})
+  } catch (error) {
+    console.log(error)
+  }
+}

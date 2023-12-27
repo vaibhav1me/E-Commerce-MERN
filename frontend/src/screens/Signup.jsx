@@ -101,6 +101,7 @@ const Signup = () => {
             <p className='text-center mt-[.5rem] text-[.6rem]'>
                 By Creating an account with us, You agree to <span href="" className='text-[#70ace3]'>Terms and Conditions</span>
             </p>
+            <button><Link to='/'>Back To Home</Link></button>
         </div>
     </div>
   )

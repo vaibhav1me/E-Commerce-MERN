@@ -53,9 +53,9 @@ const ProductPage = () => {
   // const addProductToCart = async ()
   return (
     <div className="bg-[#a2b8cd]">
-      <div className="header">
+      {/* <div className="header">
         <Header />
-      </div>
+      </div> */}
       <section>
         {product === "" ? (
           <h1>Loading Product...</h1>

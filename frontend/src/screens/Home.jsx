@@ -4,6 +4,7 @@ import CategorySection from '../components/CategorySection'
 import { useEffect, useContext } from 'react'
 import { checkCurrentUser, fetchUser } from '../apis/api'
 import { LoginContext } from '../context/DataProvider'
+import { Outlet } from 'react-router'
 
 
 const Home = () => {
@@ -25,8 +26,9 @@ const Home = () => {
   return (
     <div className="bg-[#a2b8cd]">
       <Header />
-      <Banner />
-      <CategorySection />
+      {/* <Banner />
+      <CategorySection /> */}
+      <Outlet/>
     </div>
   );
 }

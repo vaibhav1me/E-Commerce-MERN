@@ -74,14 +74,15 @@ const Cart = () => {
       let deletedCart = await emptyCart(userId, token);
       console.log(deletedCart)
       setCart([])
+      setCartValue(0)
     }
 
 
   return (
     <div>
-      <div>
+      {/* <div>
         <Header />
-      </div>
+      </div> */}
       <section>
         <div className="flex">
           {Array.isArray(cart) &&

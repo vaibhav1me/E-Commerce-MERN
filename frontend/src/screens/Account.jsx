@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import Header from '../components/Header';
-import { useNavigate } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import { LoginContext } from '../context/DataProvider';
 import { checkCurrentUser, fetchUser } from '../apis/api';
+import { NavLink } from 'react-router-dom';
 
 const Account = () => {
     const { user, setUser } = useContext(LoginContext);
@@ -25,9 +26,29 @@ const Account = () => {
     }, []);
 
   return (<div>
-    <div>
+    {/* <div>
         <Header/>
-    </div>
+    </div> */}
+    <section className='bg-green-600'>
+      <div>
+        <div className="user-dashboard">
+          <div>User Dashboard</div>
+          <button><NavLink to="/account">Profile</NavLink></button> 
+          <button><NavLink to="/account/orderHistory">Order History</NavLink></button>
+        </div>
+        {
+          user.role === "seller" && <div className="seller-dashboard">
+            <div>Seller Dashboard</div>
+            <button><NavLink to='/account/products'>Manage Products</NavLink></button>
+            <button><NavLink to="/account/orders">Manage Orders</NavLink></button>
+          </div>
+        }
+      </div>
+      <div className="content">
+        
+      </div>
+    </section>
+    <Outlet/>
   </div>);
 }
 

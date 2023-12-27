@@ -24,7 +24,7 @@ const getProduct = async (req, res) => {
     const { productId } = req.params;
     const product = await Product.findOne({ _id: productId });
     if (product) {
-      console.log(req.headers.cookie)
+      // console.log(req.headers.cookie)
         res.json(product);
     }
     else {

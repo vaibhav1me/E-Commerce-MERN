@@ -76,9 +76,9 @@ const CategoryPage = () => {
 
   return (
     <div className="bg-[#a2b8cd]">
-      <div className="header">
+      {/* <div className="header">
         <Header />
-      </div>
+      </div> */}
       <section>
         <div className="filter">
           <h1>Filter by Brand</h1>
