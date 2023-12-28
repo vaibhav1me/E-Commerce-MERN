@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import searchIcon from "../assets/search.svg";
 import cart from "../assets/cart.svg"
 import { Link, useNavigate } from "react-router-dom";
 import {LoginContext} from "../context/DataProvider";
 
-const Header = () => {
 
+const Header = () => {
+  const [searchQuery, setSearchQuery] = useState('')
   const { user , setUser} = useContext(LoginContext)
   const navigate = useNavigate()
 
@@ -43,10 +44,10 @@ const Header = () => {
             type="text"
             placeholder="Search an Item"
             className="mr-2 outline-none py-[.3rem] px-[.8rem] text-[#162e44]"
-          />
+           value={searchQuery} onChange={(e) => {setSearchQuery(e.target.value)}}/>
           <div
             className="bg-white flex items-center justify-center p-[.3rem] cursor-pointer"
-            id="searchIcon"
+            id="searchIcon" onClick={() => {navigate(`/search/${searchQuery}`)}}
           >
             <img className="h-6 w-6 " src={searchIcon} alt="" />
           </div>

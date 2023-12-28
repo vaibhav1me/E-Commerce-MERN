@@ -161,3 +161,11 @@ export const deleteProduct = async (productId) => {
     console.log(error)
   }
 }
+
+export const findProducts = async (searchQuery) => {
+  try {
+    return await axios.get(`${URL}/products/search/${searchQuery}`)
+  } catch (error) {
+    console.log(error)
+  }
+}

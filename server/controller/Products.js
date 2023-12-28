@@ -74,11 +74,41 @@ const getProductsBySeller = async (req, res) => {
     res.json(error)
   }
 }
+
+const searchProducts = async (req, res) => {
+  try {
+    let products = [];
+    const {searchQuery} = req.params;
+    const fetchProduct = async (query) => {
+      const foundProducts = await Product.find({
+        $or: [
+          {brand: {$regex: query, $options: 'i'}},
+          {category: {$regex: query, $options: 'i'}},
+          {description: {$regex: query, $options: 'i'}},
+          {title: {$regex: query, $options: 'i'}},
+        ]
+      })
+      products = [...products, ...foundProducts]
+      return products;
+    }
+    const searchQueryArray = searchQuery.split(' ')
+
+    // This will return array of array of objects
+    var productsArray = await Promise.all(searchQueryArray.map((query) => fetchProduct(query)))
+
+    // Flatenning the array
+    productsArray = [].concat(...productsArray)
+    res.json(productsArray)
+  } catch (error) {
+    res.json(error)
+  }
+}
 module.exports = {
   createProduct,
   getAllProducts,
   deleteProduct,
   getProduct,
   updateProduct,
-  getProductsBySeller
+  getProductsBySeller,
+  searchProducts
 };

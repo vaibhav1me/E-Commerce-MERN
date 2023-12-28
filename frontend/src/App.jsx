@@ -17,6 +17,7 @@ import Orders from "./components/Orders";
 import Products from "./components/Products";
 import AddProduct from "./components/AddProduct";
 import EditProduct from "./components/EditProduct";
+import SearchPage from "./components/SearchPage";
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="category/:categoryName" element={<CategoryPage/>}/>
             <Route path="product/:productId" element={<ProductPage/>}/>
             <Route path="cart" element={<Cart/>}/>
+            <Route path="search/:searchQuery" element={<SearchPage/>} />
             <Route path="account" element={<Account/>}>
               <Route index element={<Profile/>}/>
               <Route path="orderHistory" element={<OrderHistory/>} />
