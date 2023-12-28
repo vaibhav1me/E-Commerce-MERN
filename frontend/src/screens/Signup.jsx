@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect} from 'react'
 import { registerUser, checkCurrentUser, fetchUser } from '../apis/api'
 import { Link, useNavigate } from 'react-router-dom'
 import { LoginContext } from '../context/DataProvider'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 
 
 const Signup = () => {

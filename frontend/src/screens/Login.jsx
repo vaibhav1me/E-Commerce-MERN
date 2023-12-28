@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate} from "react-router-dom"
 import { authenticateLogin, checkCurrentUser, fetchUser } from '../apis/api';
 import { LoginContext } from '../context/DataProvider'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 
 const Login = () => {
     const navigate = useNavigate()
