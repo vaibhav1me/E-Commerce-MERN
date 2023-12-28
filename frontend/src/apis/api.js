@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // const URL = `http://localhost:3000/api`;
-const frontendURI = import.meta.env.VITE_BACKEND_URI
-const URL = `${frontendURI}/api`;
+const backendURI = import.meta.env.VITE_BACKEND_URI
+const URL = `${backendURI}/api`;
 
 export const registerUser = async (data) => {
   try {
