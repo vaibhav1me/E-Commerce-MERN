@@ -10,6 +10,7 @@ const cartRoutes = require('./routes/Carts')
 const orderRoutes = require('./routes/Orders')
 const categoryRoutes = require('./routes/Category');
 const { authenticateUser, checkCurrentUser } = require("./middlewares/AuthMiddleware");
+const PORT = process.env.PORT || 3000
 // const  = require("./middlewares/AuthMiddleware");
 
 app.use(cors({credentials: true}))
@@ -29,8 +30,8 @@ const startApp = async () => {
     try {
         await connectDb(process.env.MONGO_URI);
         console.log("connected to database");
-        app.listen(process.env.PORT, () => {
-            console.log(`app listening to port ${process.env.PORT}`)
+        app.listen(PORT, () => {
+            console.log(`app listening to port ${PORT}`)
         })
     } catch (error) {
         console.log(error)
