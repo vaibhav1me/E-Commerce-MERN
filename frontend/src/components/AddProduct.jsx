@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../context/DataProvider";
 import { createProduct, fetchAllCategories } from "../apis/api";
+import { useNavigate } from "react-router";
+
 
 const AddProduct = () => {
     const {user, setUser} = useContext(LoginContext)
@@ -9,7 +11,8 @@ const AddProduct = () => {
     const [brands, setBrands] = useState([])
     const [product, setProduct] = useState({title: "", price: "", stock: 0, seller: user.name, description: "", category: "", brand: "", images: []})
     const [images, setImages] = useState(["", "", "", ""])
-
+    const navigate = useNavigate()
+    
     useEffect(() => {
         // console.log(user)
         setProduct({...product, seller: user.name})
@@ -41,6 +44,9 @@ const AddProduct = () => {
             setTimeout(() => {
                 setMessage("")
             }, 3000);
+        }
+        else {
+            navigate('/account/products')
         }
         // console.log(response.data)
     }

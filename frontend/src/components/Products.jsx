@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../context/DataProvider'
 import { fetchProductsBySeller } from '../apis/api'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const Products = () => {
   const {user, setUser} = useContext(LoginContext)
@@ -35,7 +36,7 @@ const Products = () => {
                 <img src={product.images[0]} alt="" className='h-[5rem] w-[5rem]'/>
                 <span>{product.price}</span>
                 <span>{product.stock}</span>
-                <button onClick={() => editProduct(product._id)}>Edit</button>
+                <button onClick={() => editProduct(product._id)}><Link to={`/account/products/${product._id}`}>Edit</Link></button>
             </div>)
           })
         }

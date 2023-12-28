@@ -142,6 +142,22 @@ export const createProduct = async (product) => {
   try {
     return await axios.post(`${URL}/products`, {product: product})
   } catch (error) {
-    
+    console.log(error)
+  }
+}
+
+export const updateProduct = async (productId, product) => {
+  try {
+    return await axios.patch(`${URL}/products/${productId}`, product)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const deleteProduct = async (productId) => {
+  try {
+    return await axios.delete(`${URL}/products/${productId}`)
+  } catch (error) {
+    console.log(error)
   }
 }
