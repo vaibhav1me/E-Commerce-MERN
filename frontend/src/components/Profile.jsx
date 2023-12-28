@@ -8,12 +8,12 @@ const Profile = () => {
 
   useEffect(() => {
     setValues({ mobile: user.mobile, address: user.address });
-    console.log(user)
+    // console.log(user)
   },[user])
 
-  useEffect(() => {
-    console.log(values)
-  }, [values])
+  // useEffect(() => {
+  //   console.log(values)
+  // }, [values])
 
   const changeUser = async (values) => {
     let response = await updateUser(user._id, values)

@@ -13,7 +13,9 @@ const fetchOrders = async (req, res) => {
 
 const createOrder = async (req, res) => {
   // front end will send an object {userId: , orderItems: []}
-  const { userId, orderItems } = req.body;
+  const { userId, orderItems, token } = req.body;
+  console.log(token)
+  console.log(userId)
   try {
     const orders = await Promise.all(
       orderItems.map(async (orderItem) => {

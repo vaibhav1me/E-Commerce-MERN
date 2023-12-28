@@ -15,6 +15,8 @@ import Profile from "./components/Profile";
 import OrderHistory from "./components/OrderHistory";
 import Orders from "./components/Orders";
 import Products from "./components/Products";
+import AddProduct from "./components/AddProduct";
+import EditProduct from "./components/EditProduct";
 
 
 const App = () => {
@@ -33,6 +35,8 @@ const App = () => {
               <Route path="orderHistory" element={<OrderHistory/>} />
               <Route path="orders" element={<Orders/>} />
               <Route path="products" element={<Products/>} />
+              <Route path="products/addProduct" element={<AddProduct/>} />
+              <Route path="products/:productId" element={<EditProduct/>} />
             </Route>
           </Route>
           <Route path="/login" element={<div className="bg-[#a2b8cd] h-[100vh] min-h-[450px] flex items-center justify-center"><Login/></div>}/>

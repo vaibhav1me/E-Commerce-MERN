@@ -69,6 +69,7 @@ const Cart = () => {
     }
 
     const placeOrder = async (userId, token, orderItems) => {
+      console.log(userId)
       let response = await createOrder(userId, token, orderItems);
       console.log(response)
       let deletedCart = await emptyCart(userId, token);

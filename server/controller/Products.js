@@ -1,9 +1,15 @@
 const Product = require("../models/Product");
 
 const createProduct = async (req, res) => {
+  const {product} = req.body
   try {
-    const newProduct = await Product.create({ ...req.body });
-    res.json(newProduct);
+    if (product.title === "" || product.price === "" || product.stock === "" || product.seller === "" || product.description === "" || product.category === "" || product.brand === "" || product.images[0] === "") {
+      res.json({message: "Fill all the necessary fields"})
+    }
+    else {
+      const newProduct = await Product.create(product);
+      res.json(newProduct);
+    }
   } catch (error) {
     res.json(error);
   }
@@ -58,10 +64,21 @@ const updateProduct = async (req, res) => {
     res.json(error);
   }
 };
+
+const getProductsBySeller = async (req, res) => {
+  try {
+    const {sellerName} = req.params
+    const products = await Product.find({seller: sellerName})
+    res.json(products)
+  } catch (error) {
+    res.json(error)
+  }
+}
 module.exports = {
   createProduct,
   getAllProducts,
   deleteProduct,
   getProduct,
   updateProduct,
+  getProductsBySeller
 };

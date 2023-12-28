@@ -100,7 +100,7 @@ export const fetchCart = async (userId, token) => {
 
 export const createOrder = async (userId, token, orderItems) => {
   try {
-    return await axios.post(`${URL}/orders`, {userId, token, orderItems})
+    return await axios.post(`${URL}/orders/`, {userId, token, orderItems})
   } catch (error) {
     console.log(error)
   }
@@ -127,5 +127,21 @@ export const fetchOrdersBySeller = async (sellerName, token) => {
     return await axios.post(`${URL}/orders/seller`, {sellerName, token})
   } catch (error) {
     console.log(error)
+  }
+}
+
+export const fetchProductsBySeller = async (sellerName) => {
+  try {
+    return await axios.get(`${URL}/products/seller/${sellerName}`)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const createProduct = async (product) => {
+  try {
+    return await axios.post(`${URL}/products`, {product: product})
+  } catch (error) {
+    
   }
 }
