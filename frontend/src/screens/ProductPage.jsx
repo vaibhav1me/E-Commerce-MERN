@@ -1,7 +1,6 @@
 import {  useNavigate, useParams } from "react-router";
 import { addToCart, checkCurrentUser, fetchProduct, fetchUser } from "../apis/api";
 import { useState, useEffect, useContext } from "react";
-import Header from "../components/Header";
 import { LoginContext } from "../context/DataProvider";
 
 
@@ -52,7 +51,7 @@ const ProductPage = () => {
 
   // const addProductToCart = async ()
   return (
-    <div className="bg-[#a2b8cd]">
+    <div className="h-[100%] bg-secondary border-[2px]">
       {/* <div className="header">
         <Header />
       </div> */}

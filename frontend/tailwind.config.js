@@ -10,9 +10,9 @@ export default {
         yellow: "#ffff00"
       },
       screens: {
-        large: "1000px",
+        large: "1200px",
         medium: "550px",
-        small: "200px",
+        small: "350px",
       }
     },
   },
