@@ -9,18 +9,10 @@
     font-family: 'Merriweather', serif;
 }
 
-/* ------Header Styling-------- */
-/* #logout{
-    display: none;
+a:hover{
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
-#header-profile:hover{
-    #logout{
-        display: block;
-        position: absolute;
-        top: 3rem;
-        width: 5%;
-        text-align: center;
-        background-color: white;
-        color: #162e44;
-    }
-} */
+
+/* ------Header Styling-------- */
+

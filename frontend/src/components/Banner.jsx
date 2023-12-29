@@ -20,7 +20,7 @@ const responsive = {
 
 const Banner = () => {
   return (
-    <div className='px-[.8rem] my-[1rem]'>
+    <div className='p-[1rem] bg-secondary'>
     <Carousel responsive={responsive} draggable={false} infinite={true} autoPlay={true} autoPlaySpeed={3000} showDots={true} dotListClass='custom-dot-list-style' itemClass='carousel-item-padding-40-px' containerClass='carousel-container' swipeable={false}>
         {
             bannerData.map((bannerItem) => {

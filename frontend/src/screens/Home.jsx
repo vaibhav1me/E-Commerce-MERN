@@ -1,6 +1,4 @@
 import Header from '../components/Header'
-import Banner from '../components/Banner'
-import CategorySection from '../components/CategorySection'
 import { useEffect, useContext } from 'react'
 import { checkCurrentUser, fetchUser } from '../apis/api'
 import { LoginContext } from '../context/DataProvider'
@@ -24,12 +22,10 @@ const Home = () => {
   },[])
 
   return (
-    <div className="bg-[#a2b8cd]">
+    <>
       <Header />
-      {/* <Banner />
-      <CategorySection /> */}
       <Outlet/>
-    </div>
+    </>
   );
 }
 
