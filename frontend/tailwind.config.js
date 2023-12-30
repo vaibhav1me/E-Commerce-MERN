@@ -12,7 +12,7 @@ export default {
       screens: {
         large: "1200px",
         medium: "550px",
-        small: "350px",
+        small: "360px",
       }
     },
   },
