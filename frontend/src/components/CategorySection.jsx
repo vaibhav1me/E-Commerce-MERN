@@ -24,12 +24,12 @@ const CategorySection = () => {
             return (
               <div
                 key={category._id}
-                className="text-yellow mx-2 my-5 bg-secondary p-2 w-[20vw] rounded-lg content-center min-w-[10rem]"
+                className="text-yellow mx-2 my-5 bg-secondary p-2 w-[20vw] min-h-[13rem] rounded-lg flex flex-col items-center justify-between min-w-[10rem]"
               >
                 <img
                   src={category.imageUrl}
                   alt={category.categoryName}
-                  className="w-[16vw] h-[16vw] mb-2 border-[2px] min-w-[8rem] min-h-[8rem] border-yellow rounded-3xl m-auto"
+                  className="w-[16vw] h-[16vw] border-[2px] min-w-[8rem] min-h-[8rem] border-yellow rounded-3xl m-auto"
                 />
                 <NavLink
                   to={`/category/${category.categoryName}`}

@@ -42,7 +42,7 @@ const Header = () => {
               className="bg-yellow-300 flex items-center justify-center p-[.3rem] hover:bg-secondary cursor-pointer rounded-md"
               id="searchIcon"
               onClick={() => {
-                navigate(`/search/${searchQuery}`);
+               searchQuery && navigate(`/search/${searchQuery}`);
               }}
             >
               <img className="h-6 w-6" src={searchIcon} alt="" />
@@ -126,7 +126,7 @@ const Header = () => {
             className="bg-yellow-300 flex items-center justify-center p-[.3rem] cursor-pointer rounded-md hover:bg-secondary"
             id="searchIcon"
             onClick={() => {
-              navigate(`/search/${searchQuery}`);
+             searchQuery && navigate(`/search/${searchQuery}`);
             }}
           >
             <img className="h-6 w-6" src={searchIcon} alt="" />
