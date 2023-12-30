@@ -21,7 +21,7 @@ const OrderHistory = () => {
   }, [user]);
 
   return (
-    <section>
+    <div>
       {orders.length != 0 ? (
         orders.map((order) => {
           return (
@@ -58,7 +58,7 @@ const OrderHistory = () => {
       ) : (
         <div className="text-yellow text-center">{message}</div>
       )}
-    </section>
+    </div>
   );
 };
 
