@@ -24,11 +24,11 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <div
             id="logo"
-            className="text-yellow text-[2rem] underline underline-offset-4"
+            className="text-yellow text-[2rem] underline underline-offset-4 mr-5"
           >
             <NavLink to="/">ShopAseZ</NavLink>
           </div>
-          <div className="flex">
+          <div className="flex mr-2">
             <input
               type="text"
               placeholder="Search an Item"

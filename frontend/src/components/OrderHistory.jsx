@@ -1,40 +1,65 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { LoginContext } from '../context/DataProvider'
-import { fetchOrders } from '../apis/api'
+import { useContext, useEffect, useState } from "react";
+import { LoginContext } from "../context/DataProvider";
+import { fetchOrders } from "../apis/api";
 
 const OrderHistory = () => {
-  const {user, setUser} = useContext(LoginContext)
-  const [orders, setOrders] = useState([])
+  const { user, setUser } = useContext(LoginContext);
+  const [orders, setOrders] = useState([]);
+  const [message, setMessage] = useState("Loading your orders...");
 
   useEffect(() => {
-    const getOrders =async () => {
-      let response = await fetchOrders(user._id, localStorage.getItem("jwt"))
-      setOrders(response.data)
-      console.log(response)
-    }
-    getOrders()
-  }, [user])
+    const getOrders = async () => {
+      let response = await fetchOrders(user._id, localStorage.getItem("jwt"));
+      setOrders(response.data);
+      if (response.data.length === 0) {
+        setMessage(
+          "Seems you have not order anything. What are you waiting for? Add items to cart and place order now!!"
+        );
+      }
+    };
+    getOrders();
+  }, [user]);
 
   return (
-    <div>
-      {
-        orders.length != 0 ? 
+    <section>
+      {orders.length != 0 ? (
         orders.map((order) => {
           return (
-            <div>
-              <img src={order.productImg} alt="" className='h-[5rem] w-[5rem]'/>
-              <span>{order.price}</span>
-              <span>{order.placedAt}</span>
-              <span>{order.name}</span>
-              <span>{order.quantity}</span>
-              <span>{order.seller}</span>
+            <div className="flex bg-secondary items-center border-[2px] border-yellow m-2 rounded-md p-2">
+              <img
+                src={order.productImg}
+                alt=""
+                className="medium:h-[7rem] medium:w-[7rem] h-[15vw] w-[15vw] mr-4"
+              />
+              <div>
+                <div className="medium:text-[1.1rem] text-[4.5vw]">
+                  {order.name}
+                </div>
+                <div className="medium:text-[.9rem] text-[3vw]">
+                  <span className="text-yellow">Price: </span>
+                  {order.price}
+                </div>
+                <div className="medium:text-[.9rem] text-[3vw]">
+                  <span className="text-yellow">Ordered On: </span>
+                  {order.placedAt}
+                </div>
+                <div className="medium:text-[.9rem] text-[3vw]">
+                  <span className="text-yellow">Quantity: </span>
+                  {order.quantity}
+                </div>
+                <div className="medium:text-[.9rem] text-[3vw]">
+                  <span className="text-yellow">Seller: </span>
+                  {order.seller}
+                </div>
+              </div>
             </div>
-          )
+          );
         })
-        : <div>loading</div>
-      }
-    </div>
-  )
-}
+      ) : (
+        <div className="text-yellow text-center">{message}</div>
+      )}
+    </section>
+  );
+};
 
-export default OrderHistory
+export default OrderHistory;
