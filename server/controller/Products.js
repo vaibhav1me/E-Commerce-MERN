@@ -1,12 +1,20 @@
 const Product = require("../models/Product");
 
 const createProduct = async (req, res) => {
-  const {product} = req.body
+  const { product } = req.body;
   try {
-    if (product.title === "" || product.price === "" || product.stock === "" || product.seller === "" || product.description === "" || product.category === "" || product.brand === "" || product.images[0] === "") {
-      res.json({message: "Fill all the necessary fields"})
-    }
-    else {
+    if (
+      product.title === "" ||
+      product.price === "" ||
+      product.stock === "" ||
+      product.seller === "" ||
+      product.description === "" ||
+      product.category === "" ||
+      product.brand === "" ||
+      product.images[0] === ""
+    ) {
+      res.json({ message: "Fill all the necessary fields" });
+    } else {
       const newProduct = await Product.create(product);
       res.json(newProduct);
     }
@@ -17,9 +25,8 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    // console.log(req.headers.cookie)
     const allProducts = await Product.find({});
-    res.json(allProducts)
+    res.json(allProducts);
   } catch (error) {
     res.json(error);
   }
@@ -30,11 +37,9 @@ const getProduct = async (req, res) => {
     const { productId } = req.params;
     const product = await Product.findOne({ _id: productId });
     if (product) {
-      // console.log(req.headers.cookie)
-        res.json(product);
-    }
-    else {
-        res.json({message: "No product with this id"})
+      res.json(product);
+    } else {
+      res.json({ message: "No product with this id" });
     }
   } catch (error) {
     res.json(error);
@@ -67,42 +72,44 @@ const updateProduct = async (req, res) => {
 
 const getProductsBySeller = async (req, res) => {
   try {
-    const {sellerName} = req.params
-    const products = await Product.find({seller: sellerName})
-    res.json(products)
+    const { sellerName } = req.params;
+    const products = await Product.find({ seller: sellerName });
+    res.json(products);
   } catch (error) {
-    res.json(error)
+    res.json(error);
   }
-}
+};
 
 const searchProducts = async (req, res) => {
   try {
     let products = [];
-    const {searchQuery} = req.params;
+    const { searchQuery } = req.params;
     const fetchProduct = async (query) => {
       const foundProducts = await Product.find({
         $or: [
-          {brand: {$regex: query, $options: 'i'}},
-          {category: {$regex: query, $options: 'i'}},
-          {description: {$regex: query, $options: 'i'}},
-          {title: {$regex: query, $options: 'i'}},
-        ]
-      })
-      products = [...products, ...foundProducts]
+          { brand: { $regex: query, $options: "i" } },
+          { category: { $regex: query, $options: "i" } },
+          { description: { $regex: query, $options: "i" } },
+          { title: { $regex: query, $options: "i" } },
+        ],
+      });
+      products = [...products, ...foundProducts];
       return products;
-    }
-    const searchQueryArray = searchQuery.split(' ')
+    };
+    const searchQueryArray = searchQuery.split(" ");
 
     // This will return array of array of objects
-    var productsArray = await Promise.all(searchQueryArray.map((query) => fetchProduct(query)))
+    var productsArray = await Promise.all(
+      searchQueryArray.map((query) => fetchProduct(query))
+    );
 
     // Flatenning the array
-    productsArray = [].concat(...productsArray)
-    res.json(productsArray)
+    productsArray = [].concat(...productsArray);
+    res.json(productsArray);
   } catch (error) {
-    res.json(error)
+    res.json(error);
   }
-}
+};
 module.exports = {
   createProduct,
   getAllProducts,
@@ -110,5 +117,5 @@ module.exports = {
   getProduct,
   updateProduct,
   getProductsBySeller,
-  searchProducts
+  searchProducts,
 };

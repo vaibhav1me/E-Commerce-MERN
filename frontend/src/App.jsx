@@ -19,33 +19,39 @@ import AddProduct from "./components/AddProduct";
 import EditProduct from "./components/EditProduct";
 import SearchPage from "./components/SearchPage";
 
-
 const App = () => {
-
   return (
-        <ContextProvider>
-    <BrowserRouter>
+    <ContextProvider>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>}>
-            <Route index element={<><Banner/><CategorySection/></>}/>
-            <Route path="category/:categoryName" element={<CategoryPage/>}/>
-            <Route path="product/:productId" element={<ProductPage/>}/>
-            <Route path="cart" element={<Cart/>}/>
-            <Route path="search/:searchQuery" element={<SearchPage/>} />
-            <Route path="account" element={<Account/>}>
-              <Route index element={<Profile/>}/>
-              <Route path="orderHistory" element={<OrderHistory/>} />
-              <Route path="orders" element={<Orders/>} />
-              <Route path="products" element={<Products/>} />
-              <Route path="products/addProduct" element={<AddProduct/>} />
-              <Route path="products/:productId" element={<EditProduct/>} />
+          <Route path="/" element={<Home />}>
+            <Route
+              index
+              element={
+                <>
+                  <Banner />
+                  <CategorySection />
+                </>
+              }
+            />
+            <Route path="category/:categoryName" element={<CategoryPage />} />
+            <Route path="product/:productId" element={<ProductPage />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="search/:searchQuery" element={<SearchPage />} />
+            <Route path="account" element={<Account />}>
+              <Route index element={<Profile />} />
+              <Route path="orderHistory" element={<OrderHistory />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="products" element={<Products />} />
+              <Route path="products/addProduct" element={<AddProduct />} />
+              <Route path="products/:productId" element={<EditProduct />} />
             </Route>
           </Route>
-          <Route path="/login" element={<div className="bg-[#a2b8cd] h-[100vh] min-h-[450px] flex items-center justify-center"><Login/></div>}/>
-          <Route path="/signup" element={<div className="bg-[#a2b8cd] h-[100vh] min-h-[640px] flex items-center justify-center"><Signup/></div>}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
-    </BrowserRouter>
-        </ContextProvider>
+      </BrowserRouter>
+    </ContextProvider>
   );
 };
 

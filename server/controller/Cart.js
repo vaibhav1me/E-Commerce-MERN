@@ -16,9 +16,7 @@ const addToCart = async (req, res) => {
         }
         else {
         const quantity = productInCart[0].quantity + 1;
-        // cart.splice(productInCart[0].index, 1);
         cart[productInCart[0].index] = { productId, quantity };
-        // const updatedUser = await User.findOneAndUpdate({_id: userId}, {cart: [...cart, {productId, quantity}]}, {new: true})
         const updatedUser = await User.findOneAndUpdate({_id: userId}, {cart: cart}, {new: true})
         res.json(updatedUser)
         }
@@ -77,30 +75,7 @@ const fetchProduct = async (cartItem) => {
 };
 
 sentCart = await Promise.all(cart.map((cartItem) => fetchProduct(cartItem)));
-// console.log(sentCart)
 res.json({sentCart, cartValue})
-
-  // Promise.all(cart.map((cartItem) => fetchProduct(cartItem)))
-  //   .then((results) => {
-  //     sentCart = results;
-  //     console.log(sentCart);
-  //   })
-  //   .catch((error) => {
-  //     // Handle errors
-  //     console.error(error);
-  //   });
-
-  // var sentCart = [];
-  // let sentCart = await Promise.all(cart.map((cartItem) => {
-  //   var product;
-  //   const fetchProduct = async () => {product = await Product.findOne({_id: cartItem.productId})}
-  //   fetchProduct()
-  //   console.log(product)
-  //   return {productId: product._id, quantity: cartItem.quantity, productImg: product.images[0], price: (cartItem.quantity)*product.price}
-  // sentCart = [...sentCart, {productId: product._id, quantity: cartItem.quantity, productImg: product.images[0], price: (cartItem.quantity)*product.price}]
-  // console.log(sentCart)
-  // }))
-  // res.json(cart);
   } catch (error) {
     res.json(error)
   }

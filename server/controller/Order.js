@@ -1,6 +1,5 @@
 const Order = require("../models/Order");
 
-
 const fetchOrders = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -14,12 +13,14 @@ const fetchOrders = async (req, res) => {
 const createOrder = async (req, res) => {
   // front end will send an object {userId: , orderItems: []}
   const { userId, orderItems, token } = req.body;
-  console.log(token)
-  console.log(userId)
   try {
     const orders = await Promise.all(
       orderItems.map(async (orderItem) => {
-        const order = await Order.create({ userId, ...orderItem, placedAt: Date.now() });
+        const order = await Order.create({
+          userId,
+          ...orderItem,
+          placedAt: Date.now(),
+        });
         return order;
       })
     );
@@ -28,7 +29,6 @@ const createOrder = async (req, res) => {
     res.json(error);
   }
 };
-
 
 /*--------- ToDo -------*/
 const cancelOrder = async (req, res) => {
@@ -49,17 +49,14 @@ const cancelOrder = async (req, res) => {
   }
 };
 
-const fetchOrdersBySeller =async (req, res) => {
+const fetchOrdersBySeller = async (req, res) => {
   const { sellerName } = req.body;
   try {
-    const orders = await Order.find({seller: sellerName})
-    console.log(orders)
-    res.json(orders)
+    const orders = await Order.find({ seller: sellerName });
+    res.json(orders);
   } catch (error) {
-    console.log(error)
-    res.json(error)
+    res.json(error);
   }
-  // console.log(5)
-}
+};
 
 module.exports = { fetchOrders, createOrder, cancelOrder, fetchOrdersBySeller };

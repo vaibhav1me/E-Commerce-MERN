@@ -148,7 +148,7 @@ const Cart = () => {
                 );
               })
             ) : (
-              <div className="bg-green-500">You have no item in cart</div>
+              <div className="text-yellow">You have no item in cart!!</div>
             )}
           </div>
           <div className="bg-primary border-yellow border-[2px] rounded-md medium:w-[14%] min-w-[10rem] text-center p-5">

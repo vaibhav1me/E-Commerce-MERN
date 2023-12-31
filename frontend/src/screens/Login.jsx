@@ -1,55 +1,50 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { Link, useNavigate} from "react-router-dom"
-import { authenticateLogin, checkCurrentUser, fetchUser } from '../apis/api';
-import { LoginContext } from '../context/DataProvider'
-// import Cookies from 'js-cookie'
+import React, { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { authenticateLogin, checkCurrentUser, fetchUser } from "../apis/api";
+import { LoginContext } from "../context/DataProvider";
 
 const Login = () => {
-    const navigate = useNavigate()
-    const { user, setUser } = useContext(LoginContext)
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(LoginContext);
 
-    useEffect(() => {
-      const checkUserStatus = async () => {
-        var response = await checkCurrentUser();
-        if (!response.data.message) {
-          var response2 = await fetchUser(response.data.id);
-          //   console.log(response);
-          //   console.log(response2.data.user);
-          setUser(response2.data.user);
-          navigate("/");
-        }
-      };
-      checkUserStatus();
-    }, []);
+  useEffect(() => {
+    const checkUserStatus = async () => {
+      var response = await checkCurrentUser();
+      if (!response.data.message) {
+        var response2 = await fetchUser(response.data.id);
+        setUser(response2.data.user);
+        navigate("/");
+      }
+    };
+    checkUserStatus();
+  }, []);
 
-    const [ message, setMessage] = useState();
-    const [ login, setLogin ] = useState({});
+  const [message, setMessage] = useState();
+  const [login, setLogin] = useState({});
 
-    const updateLogin = (e) => {
-        setLogin({ ...login, [e.target.name]: e.target.value });
-        // console.log(login)
+  const updateLogin = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const loginUser = async () => {
+    setMessage("");
+    let response = await authenticateLogin(login);
+    const data = response.data;
+    if (data.message != "Login Successful") {
+      setMessage(data.message);
+    } else {
+      localStorage.setItem("jwt", data.token);
+      setUser(data.user);
+      navigate("/");
     }
-
-    const loginUser = async() => {
-        setMessage('')
-        let response = await authenticateLogin(login);
-        // console.log(response.data)
-        const data = response.data
-        if (data.message != "Login Successful") {
-            setMessage(data.message)
-        }
-        else {
-            // Cookies.set("jwt", data.token, { path: "/" });
-            localStorage.setItem('jwt',data.token)
-            setUser(data.user)
-            navigate('/')
-        }
-    }
+  };
 
   return (
-    <div className="bg-[#000000] w-[40%] py-[2rem] px-[1rem] rounded-[1.5rem]">
-      <h1 className="text-[2rem] text-center underline">ShopAseZ.com</h1>
-      <div className="border-[2px] px-[1.5rem] py-[1rem] w-[90%] m-auto mt-[1rem]">
+    <section className="pt-[1rem]">
+      <h1 className="bg-primary small:text-[2rem] text-[10vw] underline text-center ">
+        ShopAseZ.com
+      </h1>
+      <div className="border-[2px] border-yellow px-[1.5rem] py-[1rem] w-[90%] m-auto mt-[1rem]">
         <h1 className="text-[1.5rem] text-center">Welcome Buddy!</h1>
         <div className="mt-[1rem]">
           <h2 className="">Email</h2>
@@ -94,11 +89,13 @@ const Login = () => {
           </Link>
         </p>
         <button>
-          <Link to="/">Back To Home</Link>
+          <Link to="/" className="text-yellow">
+            Back To Home
+          </Link>
         </button>
       </div>
-    </div>
+    </section>
   );
-}
+};
 
-export default Login
+export default Login;

@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 3000
 const cookieParser = require('cookie-parser')
  */
 
-// const  = require("./middlewares/AuthMiddleware");
 
 app.use(cors({credentials: true}))
 app.use(express.json())

@@ -84,9 +84,7 @@ const AddProduct = () => {
           }}
           className="bg-primary p-2 rounded-md "
         >
-          <option value={""} >
-            Select a Category
-          </option>
+          <option value={""}>Select a Category</option>
           {categories.map((category) => {
             return (
               <option value={category.categoryName} className="text-yellow">
@@ -225,7 +223,7 @@ const AddProduct = () => {
               onChange={(e) => {
                 updateImages(index, e.target.value);
               }}
-              placeholder={`${index != 0 ? 'optional' : ""}`}
+              placeholder={`${index != 0 ? "optional" : ""}`}
               className="bg-primary p-2 rounded-md "
             />
           </div>
@@ -237,7 +235,8 @@ const AddProduct = () => {
           onClick={() => {
             addProduct();
           }}
-        className="bg-primary text-yellow hover:bg-tertiary hover:text-primary px-2 py-1 rounded-md">
+          className="bg-primary text-yellow hover:bg-tertiary hover:text-primary px-2 py-1 rounded-md"
+        >
           Confirm
         </button>
       </div>
