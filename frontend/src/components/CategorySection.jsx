@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchAllCategories } from "../apis/api";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const CategorySection = () => {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState("");
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +25,8 @@ const CategorySection = () => {
             return (
               <div
                 key={category._id}
-                className="text-yellow mx-2 my-5 bg-secondary p-2 w-[20vw] min-h-[13rem] rounded-lg flex flex-col items-center justify-between min-w-[10rem]"
+                className="text-yellow mx-2 my-5 bg-secondary p-2 w-[20vw] min-h-[13rem] rounded-lg flex flex-col items-center justify-between min-w-[10rem] cursor-pointer"
+                onClick={() => navigate(`/category/${category.categoryName}`)}
               >
                 <img
                   src={category.imageUrl}
