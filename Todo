@@ -1,0 +1,19 @@
+sabse pehle jo existing framework hai uska design theek karna hai, readme banani hai uske baad baaki sections add karne hai
+Add description or about of the frepository
+complete banner styling
+change banner images
+correct repeating of items on search
+remove faaltu ka code
+fault in edit product less url displaying
+make functions that are repeating everywhere
+make variables like token that are used at many places
+make a readme
+remove all todos
+make a navigation menu to go to home/products
+Change gitignore
+Create an error page
+make aboutus, contact, why shop with us etc. pages
+solve problem of going to custom routes
+Add features like chat with seller, 
+
+Data has been taken from 'figma(design, logo)', dummyjson, fakeapi etc... icons8 etc.....
