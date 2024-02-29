@@ -28,13 +28,9 @@ const App = () => {
     script.src = `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GOOGLE_ANALYTIC_ID}`;
     document.head.appendChild(script);
 
-    window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', import.meta.env.VITE_GOOGLE_ANALYTIC_ID)
-
-        console.log(import.meta.env.VITE_GOOGLE_ANALYTIC_ID)
+    const script2 = document.createElement('script')
+    script2.textContent = "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-SPB7X7QD8G');"
+    document.head.appendChild(script2)
   }, [])
 
   return (
