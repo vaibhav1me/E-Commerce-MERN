@@ -33,6 +33,8 @@ const App = () => {
         gtag('js', new Date());
 
         gtag('config', import.meta.env.VITE_GOOGLE_ANALYTIC_ID)
+
+        console.log(import.meta.env.VITE_GOOGLE_ANALYTIC_ID)
   }, [])
 
   return (
