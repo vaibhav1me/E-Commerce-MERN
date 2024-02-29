@@ -29,7 +29,10 @@ const App = () => {
     document.head.appendChild(script);
 
     const script2 = document.createElement('script')
-    script2.textContent = `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', ${import.meta.env.VITE_GOOGLE_ANALYTIC_ID});`
+    script2.textContent = `window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${import.meta.env.VITE_GOOGLE_ANALYTIC_ID}');`
     document.head.appendChild(script2)
   }, [])
 
