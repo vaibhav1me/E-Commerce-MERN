@@ -20,6 +20,21 @@ import EditProduct from "./components/EditProduct";
 import SearchPage from "./components/SearchPage";
 
 const App = () => {
+
+  // Google Analytics employment
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GOOGLE_ANALYTIC_ID}`;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', import.meta.env.VITE_GOOGLE_ANALYTIC_ID)
+  }, [])
+
   return (
     <ContextProvider>
       <BrowserRouter>
